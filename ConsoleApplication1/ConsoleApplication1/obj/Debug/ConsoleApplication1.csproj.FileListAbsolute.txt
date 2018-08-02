@@ -4,3 +4,9 @@ D:\In search\Coding exes\Phaeton C#\ConsoleApplication1\ConsoleApplication1\bin\
 D:\In search\Coding exes\Phaeton C#\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
 D:\In search\Coding exes\Phaeton C#\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
 D:\In search\Coding exes\Phaeton C#\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\SmokingAcer\Repositories\Arman\Landio\CarPark\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\SmokingAcer\Repositories\Arman\Landio\CarPark\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\SmokingAcer\Repositories\Arman\Landio\CarPark\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\SmokingAcer\Repositories\Arman\Landio\CarPark\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\SmokingAcer\Repositories\Arman\Landio\CarPark\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\SmokingAcer\Repositories\Arman\Landio\CarPark\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache

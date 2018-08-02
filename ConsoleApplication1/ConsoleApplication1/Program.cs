@@ -37,7 +37,7 @@ namespace ConsoleApplication1
             Console.ReadLine();
         }
 
-        public static List<Car> CarList()
+        public static List<Car> InitializeCarList()
         {
             //create new cars
             Car car1 = new Car();
@@ -110,12 +110,14 @@ namespace ConsoleApplication1
 
         static void Main(string[] args)
         {
+            List<Car> CarList = InitializeCarList();
+
             //DisplayParks(ParkList());
-            DisplayCars(CarList());
+            DisplayCars(CarList);
             Console.ReadLine();
-            AddCar(CarList());
-            AddCar(CarList());
-            AddCar(CarList());
+            AddCar(CarList);
+            AddCar(CarList);
+            AddCar(CarList);
             Console.ReadLine();
 
         }
