@@ -108,6 +108,15 @@ namespace ConsoleApplication1
             return arg;
         }
 
+        public static List<Car> RemoveCar(List<Car> arg)
+        {
+            var itemToRemove = arg.SingleOrDefault(car => car.driver == "Mike");
+            if (itemToRemove != null)
+                arg.Remove(itemToRemove);
+            DisplayCars(arg);
+            return arg;
+        }
+
         static void Main(string[] args)
         {
             List<Car> CarList = InitializeCarList();
@@ -116,8 +125,7 @@ namespace ConsoleApplication1
             DisplayCars(CarList);
             Console.ReadLine();
             AddCar(CarList);
-            AddCar(CarList);
-            AddCar(CarList);
+            RemoveCar(CarList);
             Console.ReadLine();
 
         }
