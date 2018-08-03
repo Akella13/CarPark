@@ -129,15 +129,31 @@ namespace ConsoleApplication1
             return arg1;
         }
 
-        public static List<Car> RemoveCar(List<Car> arg1, Park arg2)
+        public static List<Car> RemoveCar(List<Car> arg1, Park arg2, Car arg3)
         {
-            var itemToRemove = arg1.SingleOrDefault(car => car.carDriver == "John");
-            if (itemToRemove != null && itemToRemove.carPark == arg2)
+            var carToRemove = arg1.SingleOrDefault(car => car == arg3);
+            if (carToRemove != null && carToRemove.carPark == arg2)
             {
-                arg1.Remove(itemToRemove);
+                arg1.Remove(carToRemove);
             }
-            Console.WriteLine("You have removed a car driven by " + itemToRemove.carDriver + "!");
+            Console.WriteLine("You have removed a car driven by " + carToRemove.carDriver + "!");
             DisplayCars(arg1, arg2);
+            return arg1;
+        }
+
+        public static List<Car> TransferCar(List<Car> arg1, Park arg2, Car arg3)
+        {
+            var carToTransfer = arg1.SingleOrDefault(car => car == arg3);
+            if (carToTransfer != null && carToTransfer.carPark != arg2)
+            {
+                carToTransfer.carPark = arg2;
+                Console.WriteLine("You have transferred a car driven by " + carToTransfer.carDriver + " to " + arg2.parkName);
+            } else
+            {
+                Console.WriteLine(carToTransfer.carDriver + " is already staged at " + arg2.parkName + "!");
+            }
+            
+            DisplayAllCars(arg1);
             return arg1;
         }
 
@@ -147,11 +163,9 @@ namespace ConsoleApplication1
             List<Car> CarList = InitializeCarList(ParkList);
 
             DisplayParks(ParkList);
-            DisplayCars(CarList,ParkList[1]);
-            Console.ReadLine();
-            AddCar(CarList, ParkList[1]);
-            RemoveCar(CarList, ParkList[1]);
-            Console.ReadLine();
+            DisplayAllCars(CarList);
+
+            TransferCar(CarList, ParkList[0], CarList[0]);
 
         }
     }
