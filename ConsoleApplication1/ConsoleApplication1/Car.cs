@@ -8,17 +8,19 @@ namespace ConsoleApplication1
 {
     class Car
     {
-        public string driver;
-        public string brand;
-        public string model;
-        public int year;
-        public string vin;
-        public string color;
-        public string parts;
+        public string carDriver;
+        public string carBrand;
+        public string carModel;
+        public int carYear;
+        public string carVin;
+        public string carColor;
+        public string carParts;
+        public Park carPark;
+        
 
         public void DisplayCar()
         {
-            Console.WriteLine(this.driver + "   " + this.brand + "   " + this.model + "   " + this.year + "   " + this.vin + "   " + this.color + "   " + this.parts);
+            Console.WriteLine(this.carPark.parkName + "   " + this.carDriver + "   " + this.carBrand + "   " + this.carModel + "   " + this.carYear + "   " + this.carVin + "   " + this.carColor + "   " + this.carParts);
         }
     }
 }
