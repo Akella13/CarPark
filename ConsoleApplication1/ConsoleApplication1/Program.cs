@@ -86,7 +86,7 @@ namespace ConsoleApplication1
             return CarList;
         }
 
-        static void DisplayCars(List<Car> arg)
+        static void DisplayAllCars(List<Car> arg)
         {
             Console.WriteLine("Here are all available cars:\n");
             Console.WriteLine("Park      Driver   Brand   Model   Year   VIN   Color   Parts");
@@ -97,10 +97,25 @@ namespace ConsoleApplication1
             Console.ReadLine();
         }
 
-        public static List<Car> AddCar(List<Car> arg1, List<Park> arg2)
+        static void DisplayCars(List<Car> arg1, Park arg2)
+        {
+            Console.WriteLine("Here are  available cars in " + arg2.parkName + ":\n");
+            Console.WriteLine("Park      Driver   Brand   Model   Year   VIN   Color   Parts");
+            foreach (Car item in arg1)
+            {
+                if (item.carPark == arg2)
+                {
+                    item.DisplayCar();
+                }
+                
+            }
+            Console.ReadLine();
+        }
+
+        public static List<Car> AddCar(List<Car> arg1, Park arg2)
         {
             Car newCar = new Car();
-            newCar.carPark = arg2[1];
+            newCar.carPark = arg2;
             newCar.carBrand = "Aston Martin";
             newCar.carModel = "DB9";
             newCar.carDriver = "James";
@@ -110,17 +125,20 @@ namespace ConsoleApplication1
             newCar.carParts = "parts";
 
             arg1.Add(newCar);
-            DisplayCars(arg1);
+            DisplayCars(arg1, arg2);
             return arg1;
         }
 
-        public static List<Car> RemoveCar(List<Car> arg)
+        public static List<Car> RemoveCar(List<Car> arg1, Park arg2)
         {
-            var itemToRemove = arg.SingleOrDefault(car => car.carDriver == "Mike");
-            if (itemToRemove != null)
-                arg.Remove(itemToRemove);
-            DisplayCars(arg);
-            return arg;
+            var itemToRemove = arg1.SingleOrDefault(car => car.carDriver == "John");
+            if (itemToRemove != null && itemToRemove.carPark == arg2)
+            {
+                arg1.Remove(itemToRemove);
+            }
+            Console.WriteLine("You have removed a car driven by " + itemToRemove.carDriver + "!");
+            DisplayCars(arg1, arg2);
+            return arg1;
         }
 
         static void Main(string[] args)
@@ -129,10 +147,10 @@ namespace ConsoleApplication1
             List<Car> CarList = InitializeCarList(ParkList);
 
             DisplayParks(ParkList);
-            DisplayCars(CarList);
+            DisplayCars(CarList,ParkList[1]);
             Console.ReadLine();
-            AddCar(CarList, ParkList);
-            RemoveCar(CarList);
+            AddCar(CarList, ParkList[1]);
+            RemoveCar(CarList, ParkList[1]);
             Console.ReadLine();
 
         }
