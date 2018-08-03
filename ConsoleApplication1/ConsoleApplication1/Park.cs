@@ -18,6 +18,18 @@ namespace ConsoleApplication1
             Console.WriteLine(this.parkName + "   " + this.parkCity + "   " + this.parkAddress);
         }
 
-
+        public bool ParkIsValid()
+        {
+            if (this.parkName == "" || this.parkCity == "" || this.parkAddress == "")
+            {
+                Console.WriteLine("You need to assign this vehicle to existing park");
+                Console.ReadLine();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

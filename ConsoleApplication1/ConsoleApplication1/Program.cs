@@ -117,12 +117,10 @@ namespace ConsoleApplication1
             newCar.carVin = "445566";
             newCar.carParts = "parts";
 
-            Console.WriteLine(arg2.parkCapacity);
-            if (newCar.CarHasParkCheck())
+            if (arg2.ParkIsValid())
             {
                 arg1.Add(newCar);
                 arg2.parkCapacity++;
-                Console.WriteLine(arg2.parkCapacity);
                 DisplayCars(arg1, arg2);
             }           
             return arg1;
@@ -130,7 +128,15 @@ namespace ConsoleApplication1
         public static List<Car> RemoveCar(List<Car> arg1, Park arg2, Car arg3)
         {
             var carToRemove = arg1.SingleOrDefault(car => car == arg3);
-            if (carToRemove != null && carToRemove.carPark == arg2)
+            if (carToRemove.carPark != arg2)
+            {
+                Console.WriteLine(arg3.carModel + " driven by " + arg3.carDriver + " does not exist in " + arg2.parkName);
+            }
+            else if (arg2.parkCapacity <= 1)
+            {
+                Console.WriteLine(arg2.parkName + " must have at least " + arg2.parkCapacity + " car(s), you cannot remove any more");
+            }
+            else if (carToRemove != null && arg2.ParkIsValid())
             {
                 arg1.Remove(carToRemove);
                 arg2.parkCapacity--;
@@ -143,16 +149,26 @@ namespace ConsoleApplication1
         public static List<Car> TransferCar(List<Car> arg1, Park arg2, Car arg3)
         {
             var carToTransfer = arg1.SingleOrDefault(car => car == arg3);
-            if (carToTransfer != null && carToTransfer.carPark != arg2)
+            if (carToTransfer.carPark != arg3.carPark)
             {
-                carToTransfer.carPark = arg2;
-                Console.WriteLine("You have transferred a car driven by " + carToTransfer.carDriver + " to " + arg2.parkName);
-            } else
+                Console.WriteLine(arg3.carModel + " driven by " + arg3.carDriver + " does not exist in " + carToTransfer.carPark.parkName);
+            }
+            else if (carToTransfer.carPark.parkCapacity <= 1)
+            {
+                Console.WriteLine(carToTransfer.carPark.parkName + " must have at least " + carToTransfer.carPark.parkCapacity + " car(s), you cannot remove any more");
+            }
+            else if (carToTransfer.carPark == arg2)
             {
                 Console.WriteLine(carToTransfer.carDriver + " is already staged at " + arg2.parkName + "!");
             }
-            
+            else if (carToTransfer != null)
+            {
+                carToTransfer.carPark = arg2;
+            }
+
             DisplayAllCars(arg1);
+            Console.WriteLine("carPark name = " + arg3.carPark.parkName + ", carCapacity = " + arg3.carPark.parkCapacity);
+            Console.ReadLine();
             return arg1;
         }
 
@@ -162,9 +178,11 @@ namespace ConsoleApplication1
             List<Car> CarList = InitializeCarList(ParkList);
 
             DisplayParks(ParkList);
-            DisplayCars(CarList,ParkList[0]);
+            DisplayAllCars(CarList);
 
-            AddCar(CarList, ParkList[0]);
+            TransferCar(CarList, ParkList[0], CarList[0]);
+            //RemoveCar(CarList, ParkList[0], CarList[1]);
+            //RemoveCar(CarList, ParkList[0], CarList[1]);
 
         }
     }
