@@ -125,25 +125,25 @@ namespace ConsoleApplication1
             }           
             return arg1;
         }
-        public static List<Car> RemoveCar(List<Car> arg1, Park arg2, Car arg3)
+        public static List<Car> RemoveCar(List<Car> arg1, Car arg2)
         {
-            var carToRemove = arg1.SingleOrDefault(car => car == arg3);
-            if (carToRemove.carPark != arg2)
+            var carToRemove = arg1.SingleOrDefault(car => car == arg2);
+            if (carToRemove.carPark != arg2.carPark)
             {
-                Console.WriteLine(arg3.carModel + " driven by " + arg3.carDriver + " does not exist in " + arg2.parkName);
+                Console.WriteLine(arg2.carModel + " driven by " + arg2.carDriver + " does not exist in " + arg2.carPark.parkName);
             }
-            else if (arg2.parkCapacity <= 1)
+            else if (arg2.carPark.parkCapacity <= 1)
             {
-                Console.WriteLine(arg2.parkName + " must have at least " + arg2.parkCapacity + " car(s), you cannot remove any more");
+                Console.WriteLine(arg2.carPark.parkName + " must have at least " + arg2.carPark.parkCapacity + " car(s), you cannot remove any more");
             }
-            else if (carToRemove != null && arg2.ParkIsValid())
+            else if (carToRemove != null && arg2.carPark.ParkIsValid())
             {
                 arg1.Remove(carToRemove);
-                arg2.parkCapacity--;
+                arg2.carPark.parkCapacity--;
                 Console.WriteLine("You have removed a car driven by " + carToRemove.carDriver + "!");
             }
             
-            DisplayCars(arg1, arg2);
+            DisplayCars(arg1, arg2.carPark);
             return arg1;
         }
         public static List<Car> TransferCar(List<Car> arg1, Park arg2, Car arg3)
@@ -180,7 +180,7 @@ namespace ConsoleApplication1
             DisplayParks(ParkList);
             DisplayAllCars(CarList);
 
-            TransferCar(CarList, ParkList[0], CarList[0]);
+            RemoveCar(CarList, CarList[1]);
             //RemoveCar(CarList, ParkList[0], CarList[1]);
             //RemoveCar(CarList, ParkList[0], CarList[1]);
 
