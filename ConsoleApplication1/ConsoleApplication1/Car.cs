@@ -22,5 +22,19 @@ namespace ConsoleApplication1
         {
             Console.WriteLine(this.carPark.parkName + "   " + this.carDriver + "   " + this.carBrand + "   " + this.carModel + "   " + this.carYear + "   " + this.carVin + "   " + this.carColor + "   " + this.carParts);
         }
+
+        public bool CarHasParkCheck()
+        {
+            if(carPark.parkName == "" || carPark.parkCity == "" || carPark.parkAddress == "")
+            {
+                Console.WriteLine("You need to assign this " + this.carModel + " driven by " + this.carDriver + " to a park!");
+                Console.ReadLine();
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

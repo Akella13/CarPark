@@ -27,18 +27,6 @@ namespace ConsoleApplication1
             ParkList.Add(Lonpark);
             return ParkList;
         }
-
-        static void DisplayParks(List<Park> arg)
-        {
-            Console.WriteLine("Here are all available car parks:\n");
-            Console.WriteLine("Name   City   Address");
-            foreach (Park item in arg)
-            {
-                item.DisplayPark();
-            }
-            Console.ReadLine();
-        }
-
         public static List<Car> InitializeCarList(List<Park> arg)
         {
             //create new cars
@@ -77,15 +65,21 @@ namespace ConsoleApplication1
             CarList.Add(car1);
             CarList.Add(car2);
             CarList.Add(car3);
+            arg[0].parkCapacity++;
 
-            int CarCount = CarList.Count;
-            //for (int i = 0; i < CarCount; i++)
-            //{
-            //    CarList.Add(value);
-            //}
             return CarList;
         }
 
+        static void DisplayParks(List<Park> arg)
+        {
+            Console.WriteLine("Here are all available car parks:\n");
+            Console.WriteLine("Name   City   Address");
+            foreach (Park item in arg)
+            {
+                item.DisplayPark();
+            }
+            Console.ReadLine();
+        }
         static void DisplayAllCars(List<Car> arg)
         {
             Console.WriteLine("Here are all available cars:\n");
@@ -96,7 +90,6 @@ namespace ConsoleApplication1
             }
             Console.ReadLine();
         }
-
         static void DisplayCars(List<Car> arg1, Park arg2)
         {
             Console.WriteLine("Here are  available cars in " + arg2.parkName + ":\n");
@@ -124,23 +117,29 @@ namespace ConsoleApplication1
             newCar.carVin = "445566";
             newCar.carParts = "parts";
 
-            arg1.Add(newCar);
-            DisplayCars(arg1, arg2);
+            Console.WriteLine(arg2.parkCapacity);
+            if (newCar.CarHasParkCheck())
+            {
+                arg1.Add(newCar);
+                arg2.parkCapacity++;
+                Console.WriteLine(arg2.parkCapacity);
+                DisplayCars(arg1, arg2);
+            }           
             return arg1;
         }
-
         public static List<Car> RemoveCar(List<Car> arg1, Park arg2, Car arg3)
         {
             var carToRemove = arg1.SingleOrDefault(car => car == arg3);
             if (carToRemove != null && carToRemove.carPark == arg2)
             {
                 arg1.Remove(carToRemove);
+                arg2.parkCapacity--;
+                Console.WriteLine("You have removed a car driven by " + carToRemove.carDriver + "!");
             }
-            Console.WriteLine("You have removed a car driven by " + carToRemove.carDriver + "!");
+            
             DisplayCars(arg1, arg2);
             return arg1;
         }
-
         public static List<Car> TransferCar(List<Car> arg1, Park arg2, Car arg3)
         {
             var carToTransfer = arg1.SingleOrDefault(car => car == arg3);
@@ -163,9 +162,9 @@ namespace ConsoleApplication1
             List<Car> CarList = InitializeCarList(ParkList);
 
             DisplayParks(ParkList);
-            DisplayAllCars(CarList);
+            DisplayCars(CarList,ParkList[0]);
 
-            TransferCar(CarList, ParkList[0], CarList[0]);
+            AddCar(CarList, ParkList[0]);
 
         }
     }
