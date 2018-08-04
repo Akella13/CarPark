@@ -105,6 +105,49 @@ namespace ConsoleApplication1
             Console.ReadLine();
         }
 
+        public static List<Car> SortByDriver(List<Car> arg1, bool desc)
+        {
+            if (desc == false)
+            {
+                arg1 = arg1.OrderBy(car => car.carDriver).ToList();
+            }
+            else
+            {
+                arg1 = arg1.OrderByDescending(car => car.carDriver).ToList();
+            }
+            Console.WriteLine("Sorted by driver");
+            DisplayAllCars(arg1);
+            return arg1;
+        }
+        public static List<Car> SortByColor(List<Car> arg1, bool desc)
+        {
+            if (desc == false)
+            {
+                arg1 = arg1.OrderBy(car => car.carColor).ToList();
+            }
+            else
+            {
+                arg1 = arg1.OrderByDescending(car => car.carColor).ToList();
+            }
+            Console.WriteLine("Sorted by color");
+            DisplayAllCars(arg1);
+            return arg1;
+        }
+        public static List<Car> SortByYear(List<Car> arg1, bool desc)
+        {
+            if (desc == false)
+            {
+                arg1 = arg1.OrderBy(car => car.carYear).ToList();
+            }
+            else
+            {
+                arg1 = arg1.OrderByDescending(car => car.carYear).ToList();
+            }
+            Console.WriteLine("Sorted by year");
+            DisplayAllCars(arg1);
+            return arg1;
+        }
+
         public static List<Car> AddCar(List<Car> arg1, Park arg2)
         {
             Car newCar = new Car();
@@ -180,9 +223,12 @@ namespace ConsoleApplication1
             DisplayParks(ParkList);
             DisplayAllCars(CarList);
 
-            RemoveCar(CarList, CarList[1]);
-            //RemoveCar(CarList, ParkList[0], CarList[1]);
-            //RemoveCar(CarList, ParkList[0], CarList[1]);
+            SortByDriver(CarList, false);
+            SortByDriver(CarList, true);
+            SortByColor(CarList, false);
+            SortByColor(CarList, true);
+            SortByYear(CarList, false);
+            SortByYear(CarList, true);
 
         }
     }
