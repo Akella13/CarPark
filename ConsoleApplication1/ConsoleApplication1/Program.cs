@@ -38,7 +38,16 @@ namespace ConsoleApplication1
             car1.carColor = "yellow";
             car1.carYear = 2008;
             car1.carVin = "112233";
-            car1.carParts = "parts";
+
+            Part part001111 = new Part();
+            part001111.partType = "oil";
+            part001111.partYear = 2007;
+            part001111.partNumber = 001111;
+            car1.carParts = List<Part> car1parts;
+
+
+
+            car1Parts.Add(part001111);
 
             Car car2 = new Car();
             car2.carPark = arg[0];
