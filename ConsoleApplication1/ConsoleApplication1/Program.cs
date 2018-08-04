@@ -39,15 +39,23 @@ namespace ConsoleApplication1
             car1.carYear = 2008;
             car1.carVin = "112233";
 
+            //add parts to car1
             Part part001111 = new Part();
-            part001111.partType = "oil";
-            part001111.partYear = 2007;
+            part001111.partType = "engine oil";
+            part001111.partExpDate = 1;
             part001111.partNumber = 001111;
-            car1.carParts = List<Part> car1parts;
+            car1.AddPart(part001111);
+            Part part001112 = new Part();
+            part001112.partType = "oil filter";
+            part001112.partExpDate = 1;
+            part001112.partNumber = 001111;
+            car1.AddPart(part001112);
+            Part part001113 = new Part();
+            part001113.partType = "front brake shoe";
+            part001113.partExpDate = 1;
+            part001113.partNumber = 001111;
+            car1.AddPart(part001113);
 
-
-
-            car1Parts.Add(part001111);
 
             Car car2 = new Car();
             car2.carPark = arg[0];
@@ -57,7 +65,6 @@ namespace ConsoleApplication1
             car2.carColor = "brown";
             car2.carYear = 1967;
             car2.carVin = "223344";
-            car2.carParts = "parts";
 
             Car car3 = new Car();
             car3.carPark = arg[0];
@@ -67,7 +74,6 @@ namespace ConsoleApplication1
             car3.carColor = "blue";
             car3.carYear = 2008;
             car3.carVin = "112233";
-            car3.carParts = "parts";
 
             //collect cars to a list
             List<Car> CarList = new List<Car>();
@@ -167,7 +173,23 @@ namespace ConsoleApplication1
             newCar.carColor = "silver";
             newCar.carYear = 2003;
             newCar.carVin = "445566";
-            newCar.carParts = "parts";
+
+            Part newPart1 = new Part();
+            newPart1.partType = "engine oil";
+            newPart1.partExpDate = 1;
+            newPart1.partNumber = 001111;
+            newCar.AddPart(newPart1);
+            Part newPart2 = new Part();
+            newPart2.partType = "oil filter";
+            newPart2.partExpDate = 1;
+            newPart2.partNumber = 001111;
+            newCar.AddPart(newPart2);
+            Part newPart3 = new Part();
+            newPart3.partType = "front brake shoe";
+            newPart3.partExpDate = 1;
+            newPart3.partNumber = 001111;
+            newCar.AddPart(newPart3);
+            
 
             if (arg2.ParkIsValid())
             {
@@ -229,16 +251,12 @@ namespace ConsoleApplication1
             List<Park> ParkList = InitializeParkList();
             List<Car> CarList = InitializeCarList(ParkList);
 
-            DisplayParks(ParkList);
+            //DisplayParks(ParkList);
             DisplayAllCars(CarList);
-
-            SortByDriver(CarList, false);
-            SortByDriver(CarList, true);
-            SortByColor(CarList, false);
-            SortByColor(CarList, true);
-            SortByYear(CarList, false);
-            SortByYear(CarList, true);
-
+            CarList[0].DisplayParts();
+            AddCar(CarList, ParkList[0]);
+            CarList[3].DisplayParts();
+            DisplayAllCars(CarList);
         }
     }
 }

@@ -17,10 +17,20 @@ namespace ConsoleApplication1
         public Park carPark;
         public List<Part> carParts;
 
+        public Car()
+        {
+            this.carParts = new List<Part>();
+        }
+
 
         public void DisplayCar()
         {
-            Console.WriteLine(this.carPark.parkName + "   " + this.carDriver + "   " + this.carBrand + "   " + this.carModel + "   " + this.carYear + "   " + this.carVin + "   " + this.carColor + "   " + this.carParts.partType);
+            Console.WriteLine(this.carPark.parkName + "   " + this.carDriver + "   " + this.carBrand + "   " + this.carModel + "   " + this.carYear + "   " + this.carVin + "   " + this.carColor + "   ");
+            foreach (Part part in this.carParts)
+            {
+                Console.WriteLine("                                                        " + part.partType);
+            }
+
         }
 
         public void DisplayParts()
@@ -34,17 +44,18 @@ namespace ConsoleApplication1
             Console.ReadLine();
         }
 
-        public Car AssignParts()
+        public Car AddPart(Part arg)
         {
+            int partTypeRepeat = this.carParts.FindIndex(part => part.partType == arg.partType);
+            if (partTypeRepeat != 0)
+            {
+                this.carParts.Add(arg);
+            }
+            else
+            {
+                Console.WriteLine(this.carBrand + " " + this.carModel + " already contains " + arg.partType);
+            }
             this.DisplayParts();
-            Part part1 = new Part();
-            part1.partType = "";
-            part1.partExpDate = 1;
-            part1.partNumber = 00000;
-
-            List<Part> assignedParts = new List<Part>();
-            assignedParts.Add(part1);
-            this.carParts = assignedParts;
             return this;
         }
     }
