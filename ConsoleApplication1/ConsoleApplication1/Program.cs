@@ -254,9 +254,8 @@ namespace ConsoleApplication1
             //DisplayParks(ParkList);
             DisplayAllCars(CarList);
             CarList[0].DisplayParts();
-            AddCar(CarList, ParkList[0]);
-            CarList[3].DisplayParts();
-            DisplayAllCars(CarList);
+            CarList[0].RemovePart(CarList[0].carParts[0]);
+
         }
     }
 }

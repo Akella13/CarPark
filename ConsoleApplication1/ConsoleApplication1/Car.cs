@@ -58,5 +58,20 @@ namespace ConsoleApplication1
             this.DisplayParts();
             return this;
         }
+
+        public Car RemovePart(Part arg)
+        {
+            int partTypeRepeat = this.carParts.FindIndex(part => part.partType == arg.partType);
+            if (partTypeRepeat != 0)
+            {
+                Console.WriteLine(this.carBrand + " " + this.carModel + " does not have " + arg.partType);
+            }
+            else
+            {
+                this.carParts.Remove(arg);
+            }
+            this.DisplayParts();
+            return this;
+        }
     }
 }
