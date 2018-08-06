@@ -248,7 +248,12 @@ namespace ConsoleApplication1
 
         public static void TransferPart(List<Car> arg1, Car arg2, Car arg3, Part arg4)
         {
-            if (arg2.carModel == arg3.carModel && arg2.carBrand == arg3.carBrand)
+            if (arg4.partType.Contains("oil") || arg4.partType.Contains("fluid"))
+            {
+                Console.WriteLine("Cannot transfer liquid parts");
+                Console.ReadLine();
+            }
+            else if (arg2.carModel == arg3.carModel && arg2.carBrand == arg3.carBrand)
             {
                 arg2.RemovePart(arg4);
                 arg3.AddPart(arg4);
