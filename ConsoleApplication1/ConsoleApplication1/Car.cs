@@ -49,6 +49,7 @@ namespace ConsoleApplication1
             int partTypeRepeat = this.carParts.FindIndex(part => part.partType == arg.partType);
             if (partTypeRepeat != 0)
             {
+                Console.WriteLine(arg.partType + " has been added to " + this.carModel + " driven by " + this.carDriver);
                 this.carParts.Add(arg);
             }
             else
@@ -62,12 +63,13 @@ namespace ConsoleApplication1
         public Car RemovePart(Part arg)
         {
             int partTypeRepeat = this.carParts.FindIndex(part => part.partType == arg.partType);
-            if (partTypeRepeat != 0)
+            if (partTypeRepeat == 0)
             {
                 Console.WriteLine(this.carBrand + " " + this.carModel + " does not have " + arg.partType);
             }
             else
             {
+                Console.WriteLine(arg.partType + " has been removed from " + this.carModel + " driven by " + this.carDriver);
                 this.carParts.Remove(arg);
             }
             this.DisplayParts();

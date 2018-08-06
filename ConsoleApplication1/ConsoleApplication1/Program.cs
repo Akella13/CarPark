@@ -246,6 +246,26 @@ namespace ConsoleApplication1
             return arg1;
         }
 
+        public static void TransferPart(List<Car> arg1, Car arg2, Car arg3, Part arg4)
+        {
+            if (arg2.carModel == arg3.carModel && arg2.carBrand == arg3.carBrand)
+            {
+                arg2.RemovePart(arg4);
+                arg3.AddPart(arg4);
+                DisplayAllCars(arg1);
+            }
+            else if (arg2.carBrand != arg3.carBrand)
+            {
+                Console.WriteLine("Cannot transfer part, they must be of the same car brand");
+                Console.ReadLine();
+            }
+            else if (arg2.carModel != arg3.carModel)
+            {
+                Console.WriteLine("Cannot transfer part, they must be of the same model");
+                Console.ReadLine();
+            }
+        }
+
         static void Main(string[] args)
         {
             List<Park> ParkList = InitializeParkList();
@@ -254,7 +274,7 @@ namespace ConsoleApplication1
             //DisplayParks(ParkList);
             DisplayAllCars(CarList);
             CarList[0].DisplayParts();
-            CarList[0].RemovePart(CarList[0].carParts[0]);
+            TransferPart(CarList, CarList[0], CarList[1], CarList[0].carParts[1]);
 
         }
     }

@@ -11,5 +11,21 @@ namespace ConsoleApplication1
         public int partNumber = 0;
         public int partExpDate = 10000;
         public string partType = "";
+
+        //public Car PartContainingCar(List<Car> arg)
+        //{
+        //    foreach (Car car in arg)
+        //    {
+        //        int partTypeRepeat = car.carParts.FindIndex(part => part == this);
+        //        if (partTypeRepeat == 0)
+        //        {
+        //            return car;
+        //        }
+        //        else
+        //        {
+        //            return new Car();
+        //        }
+        //    }
+        //}
     }
 }
