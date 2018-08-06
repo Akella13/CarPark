@@ -271,24 +271,72 @@ namespace ConsoleApplication1
             }
         }
 
+        public void ShowMenu(List<Car> arg1, List<Park> arg2)
+        {
+            Console.WriteLine("Select what you wish to diplay - parks or cars");
+            Console.WriteLine("Or press enter to exit");
+            string typed1 = Console.ReadLine();
+            if (typed1 == "parks")
+            {
+                DisplayParks(arg2);
+                Console.WriteLine("Select a park to display its cars");
+                string typed2 = Console.ReadLine();
+                try
+                {
+                    DisplayCars(arg1, arg2[Int32.Parse(typed2) - 1]);
+                }
+                catch
+                {
+                    Console.WriteLine("There is no such park");
+                    ShowMenu(arg1, arg2);
+                }
+                
+            }
+            else if (typed1 == "cars")
+            {
+                DisplayAllCars(arg1);
+                Console.WriteLine("If you wish to sort the list, type 'sort'\n");
+                string typed2 = Console.ReadLine();
+                if (typed2 == "sort")
+                {
+                    Console.WriteLine("Select by which you wish to sort - color, driver or year. Also mention if you want it sorted up or down \n");
+                    string typed3 = Console.ReadLine();
+                    if (typed3 == "color up")
+                    {
+                        SortByColor(arg1, true);
+                    }
+                    else if (typed3 == "color down")
+                    {
+                        SortByColor(arg1, false);
+                    }
+                    else if (typed3 == "driver up")
+                    {
+                        SortByDriver(arg1, false);
+                    }
+                    else if (typed3 == "driver down")
+                    {
+                        SortByDriver(arg1, false);
+                    }
+                    else if (typed3 == "year up")
+                    {
+                        SortByYear(arg1, false);
+                    }
+                    else if (typed3 == "year down")
+                    {
+                        SortByYear(arg1, false);
+                    }
+                }
+            }
+
+        }
+
         static void Main(string[] args)
         {
             List<Park> ParkList = InitializeParkList();
             List<Car> CarList = InitializeCarList(ParkList);
 
-            //DisplayParks(ParkList);
-            DisplayAllCars(CarList);
-            CarList[0].DisplayParts();
-            Part newpart1 = new Part();
-            newpart1.partType = "some";
-            newpart1.partExpDate = "5600km";
-            newpart1.partNumber = 001122;
-
-            CarList[1].AddPart(newpart1);
-            newpart1.PartContainingCar(CarList).DisplayParts();
-            DisplayAllCars(CarList);
-            CarList[1].Maintenance();
-            CarList[1].DisplayParts();
+            Program menu = new Program();
+            menu.ShowMenu(CarList, ParkList);
         }
     }
 }
