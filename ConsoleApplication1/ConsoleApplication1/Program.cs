@@ -253,12 +253,6 @@ namespace ConsoleApplication1
                 Console.WriteLine("Cannot transfer liquid parts");
                 Console.ReadLine();
             }
-            else if (arg2.carModel == arg3.carModel && arg2.carBrand == arg3.carBrand)
-            {
-                arg2.RemovePart(arg4);
-                arg3.AddPart(arg4);
-                DisplayAllCars(arg1);
-            }
             else if (arg2.carBrand != arg3.carBrand)
             {
                 Console.WriteLine("Cannot transfer part, they must be of the same car brand");
@@ -269,6 +263,12 @@ namespace ConsoleApplication1
                 Console.WriteLine("Cannot transfer part, they must be of the same model");
                 Console.ReadLine();
             }
+            else if (arg2.carModel == arg3.carModel && arg2.carBrand == arg3.carBrand)
+            {
+                arg2.RemovePart(arg4);
+                arg3.AddPart(arg4);
+                DisplayAllCars(arg1);
+            }
         }
 
         static void Main(string[] args)
@@ -278,8 +278,14 @@ namespace ConsoleApplication1
 
             //DisplayParks(ParkList);
             DisplayAllCars(CarList);
-            CarList[0].DisplayParts();
-            TransferPart(CarList, CarList[0], CarList[1], CarList[0].carParts[1]);
+            Part newpart1 = new Part();
+            newpart1.partType = "some";
+            newpart1.partExpDate = 2018;
+            newpart1.partNumber = 001122;
+
+            CarList[1].AddPart(newpart1);
+            CarList[1].DisplayParts();
+            newpart1.PartContainingCar(CarList).DisplayParts();
 
         }
     }
