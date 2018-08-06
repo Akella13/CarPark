@@ -287,6 +287,8 @@ namespace ConsoleApplication1
             CarList[1].AddPart(newpart1);
             newpart1.PartContainingCar(CarList).DisplayParts();
             DisplayAllCars(CarList);
+            CarList[1].Maintenance();
+            CarList[1].DisplayParts();
         }
     }
 }

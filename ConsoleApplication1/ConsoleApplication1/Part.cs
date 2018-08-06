@@ -11,6 +11,7 @@ namespace ConsoleApplication1
         public int partNumber = 0;
         public string partExpDate = "10000 km";
         public string partType = "";
+        public string partMaintenance = "";
 
         public Car PartContainingCar(List<Car> arg)
         {

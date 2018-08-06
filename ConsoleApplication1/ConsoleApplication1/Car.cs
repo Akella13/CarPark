@@ -36,10 +36,10 @@ namespace ConsoleApplication1
         public void DisplayParts()
         {
             Console.WriteLine(this.carModel + " driven by " + this.carDriver + " parts are:");
-            Console.WriteLine("Type   Expiration   Serial N");
+            Console.WriteLine("Type   Expiration   Serial N   Maintenance");
             foreach (Part part in carParts)
             {
-                Console.WriteLine(part.partType + "   " + part.partExpDate + "   " + part.partNumber);
+                Console.WriteLine(part.partType + "   " + part.partExpDate + "   " + part.partNumber + "   " + part.partMaintenance);
             }
             Console.ReadLine();
         }
@@ -73,6 +73,16 @@ namespace ConsoleApplication1
                 this.carParts.Remove(arg);
             }
             this.DisplayParts();
+            return this;
+        }
+
+        public Car Maintenance()
+        {
+            foreach (Part part in this.carParts)
+            {
+                part.partMaintenance = "2018 year";
+            }
+            Console.WriteLine(this.carModel + " driven by " + this.carDriver + " had maintenance in " + this.carParts[0].partMaintenance);
             return this;
         }
     }
