@@ -42,19 +42,19 @@ namespace ConsoleApplication1
             //add parts to car1
             Part part001111 = new Part();
             part001111.partType = "engine oil";
-            part001111.partExpDate = 1;
+            part001111.partExpDate = "7000 km";
             part001111.partNumber = 001111;
-            car1.AddPart(part001111);
+            car1.carParts.Add(part001111);
             Part part001112 = new Part();
             part001112.partType = "oil filter";
-            part001112.partExpDate = 1;
+            part001112.partExpDate = "4600 km";
             part001112.partNumber = 001111;
-            car1.AddPart(part001112);
+            car1.carParts.Add(part001112);
             Part part001113 = new Part();
             part001113.partType = "front brake shoe";
-            part001113.partExpDate = 1;
+            part001113.partExpDate = "1 year";
             part001113.partNumber = 001111;
-            car1.AddPart(part001113);
+            car1.carParts.Add(part001113);
 
 
             Car car2 = new Car();
@@ -176,17 +176,17 @@ namespace ConsoleApplication1
 
             Part newPart1 = new Part();
             newPart1.partType = "engine oil";
-            newPart1.partExpDate = 1;
+            newPart1.partExpDate = "1 year";
             newPart1.partNumber = 001111;
             newCar.AddPart(newPart1);
             Part newPart2 = new Part();
             newPart2.partType = "oil filter";
-            newPart2.partExpDate = 1;
+            newPart2.partExpDate = "5000 km";
             newPart2.partNumber = 001111;
             newCar.AddPart(newPart2);
             Part newPart3 = new Part();
             newPart3.partType = "front brake shoe";
-            newPart3.partExpDate = 1;
+            newPart3.partExpDate = "1900 km";
             newPart3.partNumber = 001111;
             newCar.AddPart(newPart3);
             
@@ -278,15 +278,15 @@ namespace ConsoleApplication1
 
             //DisplayParks(ParkList);
             DisplayAllCars(CarList);
+            CarList[0].DisplayParts();
             Part newpart1 = new Part();
             newpart1.partType = "some";
-            newpart1.partExpDate = 2018;
+            newpart1.partExpDate = "5600km";
             newpart1.partNumber = 001122;
 
             CarList[1].AddPart(newpart1);
-            CarList[1].DisplayParts();
             newpart1.PartContainingCar(CarList).DisplayParts();
-
+            DisplayAllCars(CarList);
         }
     }
 }

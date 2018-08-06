@@ -36,7 +36,7 @@ namespace ConsoleApplication1
         public void DisplayParts()
         {
             Console.WriteLine(this.carModel + " driven by " + this.carDriver + " parts are:");
-            Console.WriteLine("Type   Year   Serial N");
+            Console.WriteLine("Type   Expiration   Serial N");
             foreach (Part part in carParts)
             {
                 Console.WriteLine(part.partType + "   " + part.partExpDate + "   " + part.partNumber);

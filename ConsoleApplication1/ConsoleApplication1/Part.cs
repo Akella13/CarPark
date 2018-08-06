@@ -9,7 +9,7 @@ namespace ConsoleApplication1
     class Part
     {
         public int partNumber = 0;
-        public int partExpDate = 10000;
+        public string partExpDate = "10000 km";
         public string partType = "";
 
         public Car PartContainingCar(List<Car> arg)
@@ -40,6 +40,14 @@ namespace ConsoleApplication1
             {
                 Console.WriteLine("Part is not in a car");
                 return null;
+            }
+        }
+
+        public void ExpCheck(List<Car> arg)
+        {
+            if (this.PartContainingCar(arg) == null)
+            {
+                this.partExpDate = "1 year";
             }
         }
     }
